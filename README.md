@@ -28,7 +28,7 @@ Worry not, Moargration won't impact your boot time until you actually need it.
 
 So it's time to drop some columns.
 
-Knowing that this can bring your app down, and that you normally need to do two deploys to safely dro pcolumns, you can use Moargration to setup the first step for you.
+Knowing that this can bring your app down, and that you normally need to do two deploys to safely drop columns, you can use Moargration to setup the first step for you.
 
 Just set an `ENV` var like:
 
