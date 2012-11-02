@@ -48,6 +48,11 @@ Sure thing, bro:
     <fields>     ::= <field> { "," <field> }
 
 
+## Todo
+
+* Sequel::Model and ActiveRecord 3 support
+
+
 ## Notes
 
 Created by Pedro Belo.
