@@ -3,7 +3,7 @@ module Moargration
 
   extend self
 
-  def setup
+  def init
     return unless ignore = ENV["MOARGRATION_IGNORE"]
     spec = parse(ignore)
     hack_active_record(spec)
