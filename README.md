@@ -1,6 +1,6 @@
 # Moargration
 
-Helping you migrate, MOAR.
+Helping you migrate MOAR.
 
 This is Ruby gem that takes environment variables to assist the execution of database migrations that would otherwise require two-step deploys.
 
