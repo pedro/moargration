@@ -9,9 +9,17 @@ For more information refer to [Rails migrations with no downtime](http://pedro.h
 
 ## Setup
 
-Add to a initializer in your app, eg `config/initializers/moargration.rb` for Rails apps:
+Add to your Gemfile:
 
-    Moargration.init
+```ruby
+gem "moargration"
+```
+
+Then initialize it from an initializer, eg `config/initializers/moargration.rb` for Rails apps:
+
+```ruby
+Moargration.init
+```
 
 Worry not, Moargration won't impact your boot time until you actually need it.
 
