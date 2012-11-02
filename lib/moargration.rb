@@ -5,7 +5,7 @@ module Moargration
 
   def init
     return unless ignore = ENV["MOARGRATION_IGNORE"]
-    columns_to_ignore = parse(ignore)
+    self.columns_to_ignore = parse(ignore)
     hack_active_record!
   end
 
@@ -18,7 +18,7 @@ module Moargration
   end
 
   def parse(text)
-    @@columns_to_ignore = text.strip.split(" ").inject({}) do |parsed, definition|
+    text.strip.split(" ").inject({}) do |parsed, definition|
       table, fields = definition.split(":", 2)
       parsed[table] = fields.split(",") if fields
       parsed
