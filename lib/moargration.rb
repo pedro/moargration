@@ -30,9 +30,12 @@ module Moargration
       class << self
         alias :columns_without_moargration :columns
         def columns
-          columns_without_moargration.reject do |column|
-            (Moargration.columns_to_ignore[table_name] || []).include?(column.name)
+          unless defined?(@cached_moargration_columns) && @cached_moargration_columns
+            @cached_moargration_columns = columns_without_moargration.reject do |column|
+              (Moargration.columns_to_ignore[table_name] || []).include?(column.name)
+            end
           end
+          @cached_moargration_columns
         end
       end
     end
