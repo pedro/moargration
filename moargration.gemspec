@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "moargration"
-  gem.version       = "0.0.2"
+  gem.version       = "0.0.3"
   gem.authors       = ["Pedro Belo"]
   gem.email         = ["pedro@heroku.com"]
   gem.description   = %q{Helping you migrate, MOAR.}
