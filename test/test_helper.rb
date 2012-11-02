@@ -20,3 +20,7 @@ end
 
 class User < ActiveRecord::Base
 end
+
+# enable the hack
+ENV["MOARGRATION_IGNORE"] = ""
+Moargration.hack_active_record!

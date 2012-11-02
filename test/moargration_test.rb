@@ -21,12 +21,12 @@ describe Moargration do
 
   describe "hack_active_record" do
     it "hacks the model to ignore the specified columns" do
-      Moargration.hack_active_record("samples" => %w( f1 ))
+      Moargration.columns_to_ignore = { "samples" => %w( f1 ) }
       Sample.columns.map(&:name).wont_include("f1")
     end
 
     it "doesn't affect other models" do
-      Moargration.hack_active_record("samples" => %w( f1 ))
+      Moargration.columns_to_ignore = { "samples" => %w( f1 ) }
       User.columns.map(&:name).must_include("f1")
     end
   end
