@@ -6,6 +6,7 @@ This is Ruby gem that takes environment variables to assist the execution of dat
 
 For more information refer to [Rails migrations with no downtime](http://pedro.herokuapp.com/past/2011/7/13/rails_migrations_with_no_downtime/).
 
+Currently works only with ActiveRecord 2.x.
 
 ## Setup
 
@@ -50,7 +51,8 @@ Sure thing, bro:
 
 ## Todo
 
-* Sequel::Model and ActiveRecord 3 support
+* Sequel::Model support
+* ActiveRecord 3 support
 
 
 ## Notes
