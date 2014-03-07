@@ -42,7 +42,7 @@ After the migration finishes you can unset that variable and enjoy your new data
 
 ## The example above is not completely obvious, I need a [BNF grammar](http://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form)
 
-Sure thing, bro:
+Sure thing:
 
     <ignore>     ::= <definition> { " " <definition> }
     <definition> ::= <table> ":" <fields>
