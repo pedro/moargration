@@ -1,3 +1,6 @@
+require "bundler"
+Bundler.require(:default, :test)
+
 require "minitest/spec"
 require "minitest/autorun"
 require "active_record"
