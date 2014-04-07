@@ -17,6 +17,11 @@ module Moargration
     @@columns_to_ignore
   end
 
+  def ignoring?(table, column)
+    ignored_columns = columns_to_ignore[table.to_s] || []
+    ignored_columns.include?(column.to_s)
+  end
+
   def parse(text)
     text.strip.split(" ").inject({}) do |parsed, definition|
       table, fields = definition.split(":", 2)
