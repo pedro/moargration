@@ -4,6 +4,7 @@ module Moargration
   extend self
 
   def init
+    @@columns_to_ignore = {}
     return unless ignore = ENV["MOARGRATION_IGNORE"]
     self.columns_to_ignore = parse(ignore)
     hack_active_record!
