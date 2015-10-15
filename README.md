@@ -8,7 +8,7 @@ To better understand the problem consider this timeline:
 
 - Unicorn server boots up, ActiveRecord caches columns in the database
 - Someone runs `rake db:migrate` and drops a column
-- Unicorn workers start raising errors – column does not exist
+- Unicorn starts raising errors when controllers try to call create/update/find on the corresponding model, issuing queries that have the removed column
 
 With Moargration you can tell ActiveRecord to ignore certain columns from the cache, so that they can be removed safely.
 
@@ -21,7 +21,7 @@ Works with ActiveRecord 2, 3 and 4.
 
 Cached columns are a big problem in AR2 because they're written with all `INSERT` and `UPDATE`.
 
-Starting in version 3 AR only uses columns that have a value set when writing `INSERT`, and uses the dirty attribute check to figure out which columns to `UPDATE`, so you won't run into issues creating or updating records. Finders with joins will rely on cached columns to build a query though, so these might still cause PG errors.
+Starting in version 3 AR only uses columns that have a value set when writing `INSERT`, and uses the dirty attribute check to figure out which columns to `UPDATE`, so you won't run into issues creating or updating records. BUT finders with joins will still rely on cached columns to build a query, so these might still raise database errors.
 
 This doesn't work with Sequel atm. Similar to AR3+ it doesn't use cached columns on `INSERT`, but calling `.save` on a model does so it will raise on removed columns too.
 
