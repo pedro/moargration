@@ -23,7 +23,7 @@ Cached columns are a big problem in AR2 because they're written with all `INSERT
 
 Starting in version 3 AR only uses columns that have a value set when writing `INSERT`, and uses the dirty attribute check to figure out which columns to `UPDATE`, so you won't run into issues creating or updating records. BUT finders with joins will still rely on cached columns to build a query, so these might still raise database errors.
 
-This doesn't work with Sequel atm. Similar to AR3+ it doesn't use cached columns on `INSERT`, but calling `.save` on a model does so it will raise on removed columns too.
+Sequel is not supported at the moment. Similar to AR3+ it doesn't use cached columns on `INSERT` so you shouldn't run into issues creating objects – but generic model updates via `.save` are susceptible to the same issues. As a workaround you should consider always calling `update` with the specific columns you want to update. The [Dirty attribute plugin](http://sequel.jeremyevans.net/rdoc-plugins/classes/Sequel/Plugins/Dirty/InstanceMethods.html) won't help as it doesn't limit columns on the `UPDATE` statement.
 
 
 ## Setup
