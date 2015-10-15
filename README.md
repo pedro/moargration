@@ -2,11 +2,29 @@
 
 Helping you migrate MOAR.
 
-This is Ruby gem that takes environment variables to assist the execution of database migrations that would otherwise require two-step deploys.
+Moargration helps you drop columns without downtime. Without it, ActiveRecord keeps columns cached and freaks out when they're gone.
+
+To better understand the problem consider this timeline:
+
+- Unicorn server boots up, ActiveRecord caches columns in the database
+- Someone runs `rake db:migrate` and drops a column
+- Unicorn workers start raising errors – column does not exist
+
+With Moargration you can tell ActiveRecord to ignore certain columns from the cache, so that they can be removed safely.
 
 For more information refer to [Rails migrations with no downtime](http://pedro.herokuapp.com/past/2011/7/13/rails_migrations_with_no_downtime/).
 
-Currently works only with ActiveRecord 2.x.
+
+## Compatibility
+
+Works with ActiveRecord 2, 3 and 4.
+
+Cached columns are a big problem in AR2 because they're written with all `INSERT` and `UPDATE`.
+
+Starting in version 3 AR only uses columns that have a value set when writing `INSERT`, and uses the dirty attribute check to figure out which columns to `UPDATE`, so you won't run into issues creating or updating records. Finders with joins will rely on cached columns to build a query though, so these might still cause PG errors.
+
+This doesn't work with Sequel atm. Similar to AR3+ it doesn't use cached columns on `INSERT`, but calling `.save` on a model does so it will raise on removed columns too.
+
 
 ## Setup
 
@@ -52,7 +70,6 @@ Sure thing:
 ## Todo
 
 * Sequel::Model support
-* ActiveRecord 3 support
 
 
 ## Notes
